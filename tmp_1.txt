@@ -1,0 +1,438 @@
+  ,-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------.
+  | id            | tipo           | clas             | read_only | ctx | nome / simbolos                                                                                         |
+  |---------------+----------------+------------------+-----------+-----+---------------------------------------------------------------------------------------------------------|
+  | a1_flags      | unsigned int   | SCD_ClasSac      |           |     | Indicadores do ponto                                                                                    |
+  |               |                |                  |           |     |             0x1 - K_PAS_FLG_ERREE                                                                       |
+  |               |                |                  |           |     |             0x2 - K_PAS_FLG_FOVAR                                                                       |
+  |               |                |                  |           |     |             0x4 - K_PAS_FLG_FALHA                                                                       |
+  |               |                |                  |           |     |             0x8 - K_PAS_FLG_IVORG                                                                       |
+  |               |                |                  |           |     |            0x10 - K_PAS_FLG_MAORG                                                                       |
+  |               |                |                  |           |     |            0x20 - K_PAS_FLG_MANUA                                                                       |
+  |               |                |                  |           |     |            0x40 - K_PAS_FLG_NINCI                                                                       |
+  |               |                |                  |           |     |            0x80 - K_PAS_FLG_ANREC                                                                       |
+  |               |                |                  |           |     |           0x100 - K_PAS_FLG_NOSUP                                                                       |
+  |               |                |                  |           |     |           0x200 - K_PAS_FLG_AINIB                                                                       |
+  |               |                |                  |           |     |           0x400 - K_PAS_FLG_ALRP                                                                        |
+  |               |                |                  |           |     |           0x800 - K_PAS_FLG_SACOK                                                                       |
+  |               |                |                  |           |     |          0x1000 - K_PAS_FLG_INVAL                                                                       |
+  |               |                |                  |           |     |          0x2000 - K_PAS_FLG_FVORG                                                                       |
+  |               |                |                  |           |     |          0x4000 - K_PAS_FLG_ALINT                                                                       |
+  |               |                |                  |           |     |          0x8000 - K_PAS_FLG_SELAR                                                                       |
+  |               |                |                  |           |     |       0x10000LL - K_PAS_FLG_SELSD                                                                       |
+  |               |                |                  |           |     |       0x20000LL - K_PAS_FLG_AUREC                                                                       |
+  |               |                |                  |           |     |       0x40000LL - K_PAS_FLG_APLUS                                                                       |
+  |               |                |                  |           |     |       0x80000LL - K_PAS_FLG_SUBST                                                                       |
+  |               |                |                  |           |     |      0x100000LL - K_PAS_FLG_CTRLME                                                                      |
+  |               |                |                  |           |     |      0x200000LL - K_PAS_FLG_EEORG                                                                       |
+  |               |                |                  |           |     |      0x400000LL - K_PAS_FLG_RAZOA                                                                       |
+  |               |                |                  |           |     |      0x800000LL - K_PAS_FLG_LIMAN                                                                       |
+  |               |                |                  |           |     |     0x1000000LL - K_PAS_FLG_LIMANBLOQ                                                                   |
+  |               |                |                  |           |     |     0x2000000LL - K_PAS_FLG_NCOMISS                                                                     |
+  |               |                |                  |           |     |     0x4000000LL - K_PAS_FLG_INVRT                                                                       |
+  |               |                |                  |           |     |     0x8000000LL - K_PAS_FLG_ATINV                                                                       |
+  |               |                |                  |           |     |    0x10000000LL - K_PAS_FLG_ANORG                                                                       |
+  |               |                |                  |           |     |    0x20000000LL - K_PAS_FLG_SINCM                                                                       |
+  |               |                |                  |           |     |    0x40000000LL - K_PAS_FLG_AIORG                                                                       |
+  |               |                |                  |           |     |    0x80000000LL - K_PAS_FLG_TMPLIM                                                                      |
+  | a2_flags      | short          | SAR_ClasEstado   |           |     | Indicadores do ponto para o valor estimado                                                              |
+  |               |                |                  |           |     |               0 - K_EE_FLG_NORM                                                                         |
+  |               |                |                  |           |     |               1 - K_EE_FLG_ERREE                                                                        |
+  |               |                |                  |           |     |               2 - K_EE_FLG_NAOEST                                                                       |
+  |               |                |                  |           |     |               3 - K_EE_FLG_EXCL                                                                         |
+  |               |                |                  |           |     |               4 - K_EE_FLG_RLOC                                                                         |
+  |               |                |                  |           |     |               5 - K_EE_FLG_REST                                                                         |
+  |               |                |                  |           |     |               6 - K_EE_FLG_ANORM                                                                        |
+  |               |                |                  |           |     |               7 - K_EE_FLG_EXCL_OPER                                                                    |
+  |               |                |                  |           |     |               8 - K_EE_FLG_EXCL_DESL                                                                    |
+  |               |                |                  |           |     |               9 - K_EE_FLG_EXCL_PRE                                                                     |
+  |               |                |                  |           |     |              10 - K_EE_FLG_EXTERNO                                                                      |
+  |               |                |                  |           |     |              11 - K_EE_FLG_QUAL_NAO_AVALIADA                                                            |
+  |               |                |                  |           |     |              12 - K_EE_EQP_EXCLUIDO_EE                                                                  |
+  | a3_flags      | short          | SAR_ClasContem   |           |     | Indicadores do ponto para o valor otimizado                                                             |
+  |               |                |                  |           |     |               0 - K_CE_FLG_NORM                                                                         |
+  |               |                |                  |           |     |               1 - K_CE_FLG_RELAXADA                                                                     |
+  |               |                |                  |           |     |               2 - K_CE_FLG_NAOOT                                                                        |
+  |               |                |                  |           |     |               3 - K_CE_FLG_CONTALT                                                                      |
+  |               |                |                  |           |     |               4 - K_CE_FLG_CATIVO                                                                       |
+  | a_alr         | unsigned short | SSC_ClasAlr      |           |     | Apontador para alarme do ponto                                                                          |
+  | a_aor         | unsigned short | SIG_ClasConf     |           |     | Apontador para area de responsabilidade                                                                 |
+  | a_eqp         | short          | SAR_ClasConfig   |           |     | Apontador para Equipamento associado                                                                    |
+  | a_eqp_cad     | short          | STI_ClasCadastro | sim       |     | Apontador para Equipamento associado                                                                    |
+  | a_est         | short          | STI_ClasCadastro | sim       |     | Apontador p/ a estacao                                                                                  |
+  | a_lua         | unsigned short | SCD_ClasSac      | sim       |     | Apontador para calculo interpretado                                                                     |
+  | a_ocr         | unsigned short | SCD_ClasSac      | sim       |     | Apontador para ocorrencias do ponto                                                                     |
+  | a_paf         | unsigned int   | SCD_ClasDcp      | sim       |     | Apontador para ponto fisico                                                                             |
+  | a_pcondalr    | unsigned int   | SCD_ClasSac      | sim       |     | Apontador para ponto digital condicionante da habilitacao do alarme                                     |
+  | a_pmu         | short          | SCD_ClasSac      |           |     | Apontador para o PMU correspondente a este valor de PAS                                                 |
+  | a_tcl         | unsigned int   | SIG_ClasGeral    | sim       |     | Apontador para tipo de calculo                                                                          |
+  | a_tela        | unsigned short | SIG_ClasGeral    |           |     | Apontador para a tela associada ao ponto analogico                                                      |
+  | a_term        | int            | SAR_ClasCad      | sim       |     | Apontador p/ o terminal associado ao PAS                                                                |
+  | acor_a3_flags | short          | SAR_ClasAcor     |           | sim | Indicadores do ponto para o valor otimizado                                                             |
+  |               |                |                  |           |     |               0 - K_CE_FLG_NORM                                                                         |
+  |               |                |                  |           |     |               1 - K_CE_FLG_RELAXADA                                                                     |
+  |               |                |                  |           |     |               2 - K_CE_FLG_NAOOT                                                                        |
+  |               |                |                  |           |     |               3 - K_CE_FLG_CONTALT                                                                      |
+  |               |                |                  |           |     |               4 - K_CE_FLG_CATIVO                                                                       |
+  | acor_rgalrotm | unsigned char  | SAR_ClasAcor     |           | sim | Regiao corrente de alarme para valor otimizado                                                          |
+  |               |                |                  |           |     |               0 - K_REG_NLRG                                                                            |
+  |               |                |                  |           |     |               1 - K_REG_IESC                                                                            |
+  |               |                |                  |           |     |               2 - K_REG_IURG                                                                            |
+  |               |                |                  |           |     |               3 - K_REG_IADV                                                                            |
+  |               |                |                  |           |     |               4 - K_REG_NORM                                                                            |
+  |               |                |                  |           |     |               5 - K_REG_SADV                                                                            |
+  |               |                |                  |           |     |               6 - K_REG_SURG                                                                            |
+  |               |                |                  |           |     |               7 - K_REG_SESC                                                                            |
+  | acor_valotm   | float          | SAR_ClasAcor     |           | sim | Valor otimizado para a medida                                                                           |
+  | aoi           | unsigned char  | SSC_ClasAoi      |           |     | Estado na Area de Informacao                                                                            |
+  |               |                |                  |           |     |               0 - K_AOI_NULA                                                                            |
+  |               |                |                  |           |     |               1 - K_AOI_IMPORT                                                                          |
+  |               |                |                  |           |     |               2 - K_AOI_EXPORT                                                                          |
+  | b_e2m         | unsigned int   | SSC_ClasAlr      | sim       |     | Apontador para macro alarmes do ponto                                                                   |
+  | bndmo         | float          | SCD_ClasSac      | sim       |     | Banda morta                                                                                             |
+  | cdinic        | short          | STI_ClasCadastro | sim       |     | Indicador da condicao inicial do ponto analogico (NPED, SUB_MED, SUB_AUTO)                              |
+  | cmtmon        | string[42]     | SCG_ClasScg      |           |     | Comentario de monitoracao                                                                               |
+  | compdev       | float          | STI_ClasHist     | sim       |     | Banda morta em UE para efeito de compressao no PI                                                       |
+  | cont_anorm    | int            | SCD_ClasSac      |           |     | Segundos de permanencia fora do estado normal                                                           |
+  | cont_curta    | int            | SCD_ClasSac      |           |     | Segundos de permanencia extrapolando LxE                                                                |
+  | cont_longa    | int            | SCD_ClasSac      |           |     | Segundos de permanencia extrapolando LxU                                                                |
+  | cont_perm     | int            | SCD_ClasSac      |           |     | Segundos de permanencia extrapolando LxA                                                                |
+  | desvp         | float          | SAR_ClasEstmon   |           |     | Desvio padrao da medida (pu)                                                                            |
+  |               |                |                  |           |     |             0.1 - K_DESV_TAP_MAX                                                                        |
+  |               |                |                  |           |     |             0.1 - K_DESV_TAP_SEM_REMOTA_DEF                                                             |
+  |               |                |                  |           |     |             0.5 - K_DESV_FLUXO_MAX                                                                      |
+  |               |                |                  |           |     |             0.5 - K_DESV_SEM_REMOTA_DEF                                                                 |
+  |               |                |                  |           |     |            0.01 - K_DESV_FLUXO_MIN                                                                      |
+  |               |                |                  |           |     |            0.01 - K_DESV_TENSAO_MAX                                                                     |
+  |               |                |                  |           |     |            0.01 - K_DESV_TENSAO_SEM_REMOTA_DEF                                                          |
+  |               |                |                  |           |     |            0.06 - K_DESV_TAP_DEF                                                                        |
+  |               |                |                  |           |     |            0.08 - K_DESV_FLUXO_DEF                                                                      |
+  |               |                |                  |           |     |           0.001 - K_DESV_TENSAO_MIN                                                                     |
+  |               |                |                  |           |     |           0.003 - K_DESV_TENSAO_DEF                                                                     |
+  |               |                |                  |           |     |           0.005 - K_DESV_TAP_MIN                                                                        |
+  | excdev        | float          | STI_ClasHist     | sim       |     | Banda morta em UE para efeito de excecao no PI                                                          |
+  | grmsk         | unsigned int   | SSC_ClasTnd      |           |     | Grupos associados a medida tendenciavel                                                                 |
+  | hatlz         | int            | SCD_ClasSac      |           |     | Data-Hora da ultima atualizacao                                                                         |
+  | histform      | char           | STI_ClasHist     | sim       |     | Descricao do calculo dinamico em OBSRV selecionado para historico                                       |
+  |               |                |                  |           |     |               0 - K_HISTSLC_INCLUI                                                                      |
+  |               |                |                  |           |     |              -1 - K_HISTSLC_EXCLUI                                                                      |
+  | histlin       | char           | STI_ClasHist     | sim       |     | Limites do ponto selecionados para base historica                                                       |
+  |               |                |                  |           |     |               0 - K_HISTSLC_INCLUI                                                                      |
+  |               |                |                  |           |     |              -1 - K_HISTSLC_EXCLUI                                                                      |
+  | histper       | short          | STI_ClasHist     | sim       |     | Periodo de exportacao para base historica                                                               |
+  | histslc       | char           | STI_ClasHist     | sim       |     | Ponto selecionado para base historica                                                                   |
+  |               |                |                  |           |     |               0 - K_HISTSLC_INCLUI                                                                      |
+  |               |                |                  |           |     |              -1 - K_HISTSLC_EXCLUI                                                                      |
+  | histslc_est   | char           | STI_ClasHist     |           |     | Valor estimado selecionado para base historica                                                          |
+  |               |                |                  |           |     |               0 - K_HISTSLC_INCLUI                                                                      |
+  |               |                |                  |           |     |              -1 - K_HISTSLC_EXCLUI                                                                      |
+  | histslc_prvcg | char           | STI_ClasHist     |           |     | Previsao de carga selecionada para base historica                                                       |
+  |               |                |                  |           |     |               0 - K_HISTSLC_INCLUI                                                                      |
+  |               |                |                  |           |     |              -1 - K_HISTSLC_EXCLUI                                                                      |
+  | horam         | unsigned int   | SCD_ClasSac      |           |     | Hora (UNix) da ultima atualizacao manual                                                                |
+  | htris         | float          | SCD_ClasSac      |           |     | Valor de histerese                                                                                      |
+  | id            | string[32]     | SCD_ClasIds      | sim       |     | Identificador do PAS                                                                                    |
+  | ideqp         | string[32]     | STI_ClasIdent    | sim       |     | Equipamento associado                                                                                   |
+  | idest         | string[15]     | STI_ClasIdent    | sim       |     | Estacao associada a medida                                                                              |
+  | idiccp        | string[32]     | SCD_ClasCod      | sim       |     | Identificador do servidor ICCP                                                                          |
+  | idins         | string[12]     | STI_ClasHist     | sim       |     | Identificador da Instalacao a que pertence                                                              |
+  | idlia         | string[8]      | STI_ClasHist     | sim       |     | Identificador da Ligacao a que pertence                                                                 |
+  | idocr         | string[25]     | STI_ClasHist     | sim       |     | Identificador da ocorrencia                                                                             |
+  | idoper        | string[32]     | STI_ClasIdent    | sim       |     | Identificador especifico para o operador                                                                |
+  | idpmu         | string[32]     | STI_ClasHist     | sim       |     | Identificador do PMU associado ao PAS                                                                   |
+  | idtac         | string[12]     | STI_ClasIdent    | sim       |     | Identificador da TAC a que pertence                                                                     |
+  | indee         | char           | SAR_ClasEstmon   |           |     | Indica se o ponto analogico e considerado pelo Estimador de Estado                                      |
+  |               |                |                  |           |     |               0 - K_INDEE_EXCLUI                                                                        |
+  |               |                |                  |           |     |               1 - K_INDEE_INCLUI                                                                        |
+  | indusr        | char           | SAR_ClasEstmon   |           |     | Indicador de que o ponto excluido pelo usuario pode retornar ao processo de estimacao (1=pode retornar) |
+  | indvalaq      | char           | SAR_ClasEstmon   |           |     | Condicao do valor aquisitado quando comparado ao valor estimado (0=boa; 1=ruim)                         |
+  |               |                |                  |           |     |               0 - K_INDVALAQ_BOM                                                                        |
+  |               |                |                  |           |     |               1 - K_INDVALAQ_RUIM                                                                       |
+  | invsn         | char           | SAR_ClasEstado   |           |     | Inverte o sinal da medida analogica para o Analise de Redes (Verdade=Inverte)                           |
+  | lconf         | float          | SAR_ClasEstmon   |           |     | Limite de confianca da medida estimada                                                                  |
+  | lf_clm        | unsigned int   | SCD_ClasSac      | sim       |     | Proximo ponto analogico associado ao conjunto de limites                                                |
+  | lf_est        | unsigned int   | STI_ClasCadastro | sim       |     | Apontador p/ proxima medida analogica da estacao                                                        |
+  | linfa         | float          | SCD_ClasSac      |           |     | Limite inferior de advertencia                                                                          |
+  | linfao        | float          | SCD_ClasSac      |           |     | Limite inferior de advertencia original                                                                 |
+  | linfe         | float          | SCD_ClasSac      |           |     | Limite inferior de escala                                                                               |
+  | linfeo        | float          | SCD_ClasSac      |           |     | Limite inferior de escala original                                                                      |
+  | linfu         | float          | SCD_ClasSac      |           |     | Limite inferior de urgencia                                                                             |
+  | linfuo        | float          | SCD_ClasSac      |           |     | Limite inferior de urgencia original                                                                    |
+  | lscinf        | string[8]      | STI_ClasCadastro | sim       |     | Identificador da ligacao SCADA no nivel hierarquico inferior de comunicacao                             |
+  | lsupa         | float          | SCD_ClasSac      |           |     | Limite superior de advertencia                                                                          |
+  | lsupao        | float          | SCD_ClasSac      |           |     | Limite superior de advertencia original                                                                 |
+  | lsupe         | float          | SCD_ClasSac      |           |     | Limite superior de escala                                                                               |
+  | lsupeo        | float          | SCD_ClasSac      |           |     | Limite superior de escala original                                                                      |
+  | lsupu         | float          | SCD_ClasSac      |           |     | Limite superior de urgencia                                                                             |
+  | lsupuo        | float          | SCD_ClasSac      |           |     | Limite superior de urgencia original                                                                    |
+  | mxper         | float          | SCD_ClasSac      |           |     | Maximo no periodo                                                                                       |
+  | n_e2m         | unsigned short | SSC_ClasAlr      | sim       |     | Numero de macro alarmes do ponto                                                                        |
+  | nome          | string[63]     | SCD_ClasIds      |           |     | Nome                                                                                                    |
+  | obsrv         | string[96]     | SCD_ClasDcp      |           |     | Observacoes sobre o ponto analogico                                                                     |
+  | origem        | char           | STI_ClasCadastro | sim       |     | Origem da criacao das medidas analogicas                                                                |
+  |               |                |                  |           |     |               1 - K_GRANDANA_MONRES                                                                     |
+  |               |                |                  |           |     |               2 - K_GRANDANA_SCADA                                                                      |
+  |               |                |                  |           |     |               3 - K_GRANDANA_RCALC                                                                      |
+  |               |                |                  |           |     |               4 - K_GRANDANA_PDO                                                                        |
+  |               |                |                  |           |     |               5 - K_GRANDANA_EE                                                                         |
+  | p_pad         | unsigned int   | SCD_ClasSac      | sim       |     | Apontador para a primeira ocorrencia do PAS em PAD                                                      |
+  | p_rpa         | unsigned int   | SCD_ClasSac      |           |     | Apontador para relacionamento fisico                                                                    |
+  | pedexc        | char           | SAR_ClasEstmon   |           |     | Pedido do usuario para excluir/incluir a medida do processo de estimacao                                |
+  |               |                |                  |           |     |               0 - K_PAS_PED_NPED                                                                        |
+  |               |                |                  |           |     |               1 - K_PAS_PED_EXC_USU                                                                     |
+  |               |                |                  |           |     |               4 - K_PAS_PED_INC_USU                                                                     |
+  |               |                |                  |           |     |               5 - K_PAS_PED_EXC_EE                                                                      |
+  | pedsubs       | char           | SAR_ClasEstmon   |           |     | Pedido do usuario para substituir/restabelecer a medida no SCADA                                        |
+  |               |                |                  |           |     |               0 - K_PAS_PED_NPED                                                                        |
+  |               |                |                  |           |     |               2 - K_PAS_PED_SUB_MED                                                                     |
+  |               |                |                  |           |     |               3 - K_PAS_PED_REST_MED                                                                    |
+  |               |                |                  |           |     |               6 - K_PAS_PED_SUB_AUTO                                                                    |
+  | prio          | char           | SCD_ClasSac      |           |     | Ponto com processamento SCADA prioritario                                                               |
+  | prioalr       | unsigned short | SSC_ClasAlr      |           |     | Ordem de prioridade para o Alarme.                                                                      |
+  | redund        | char           | SAR_ClasEstmon   |           |     | Redundancia associada a medida analogica                                                                |
+  | resbias       | float          | SAR_ClasEstmon   |           |     | Bias do Residuo                                                                                         |
+  | residuo       | float          | SAR_ClasEstmon   |           |     | Residuo da medida analogica                                                                             |
+  | resnorm       | float          | SAR_ClasEstmon   |           |     | Residuo normalizado                                                                                     |
+  | respond       | float          | SAR_ClasEstmon   |           |     | Residuo ponderado da medida analogica                                                                   |
+  | rgalr         | unsigned char  | SCD_ClasSac      |           |     | Regiao corrente                                                                                         |
+  |               |                |                  |           |     |               0 - K_REG_NLRG                                                                            |
+  |               |                |                  |           |     |               1 - K_REG_IESC                                                                            |
+  |               |                |                  |           |     |               2 - K_REG_IURG                                                                            |
+  |               |                |                  |           |     |               3 - K_REG_IADV                                                                            |
+  |               |                |                  |           |     |               4 - K_REG_NORM                                                                            |
+  |               |                |                  |           |     |               5 - K_REG_SADV                                                                            |
+  |               |                |                  |           |     |               6 - K_REG_SURG                                                                            |
+  |               |                |                  |           |     |               7 - K_REG_SESC                                                                            |
+  | rgalr_fp      | unsigned char  | SAR_ClasFluxop   |           |     | Regiao corrente de alarme para valor calculado pelo SAR_fluxop                                          |
+  |               |                |                  |           |     |               0 - K_REG_NLRG                                                                            |
+  |               |                |                  |           |     |               1 - K_REG_IESC                                                                            |
+  |               |                |                  |           |     |               2 - K_REG_IURG                                                                            |
+  |               |                |                  |           |     |               3 - K_REG_IADV                                                                            |
+  |               |                |                  |           |     |               4 - K_REG_NORM                                                                            |
+  |               |                |                  |           |     |               5 - K_REG_SADV                                                                            |
+  |               |                |                  |           |     |               6 - K_REG_SURG                                                                            |
+  |               |                |                  |           |     |               7 - K_REG_SESC                                                                            |
+  | rgalrctg      | unsigned char  | SAR_ClasAnacon   |           | sim | Regiao corrente de alarme para valor do anacon                                                          |
+  |               |                |                  |           |     |               0 - K_REG_NLRG                                                                            |
+  |               |                |                  |           |     |               1 - K_REG_IESC                                                                            |
+  |               |                |                  |           |     |               2 - K_REG_IURG                                                                            |
+  |               |                |                  |           |     |               3 - K_REG_IADV                                                                            |
+  |               |                |                  |           |     |               4 - K_REG_NORM                                                                            |
+  |               |                |                  |           |     |               5 - K_REG_SADV                                                                            |
+  |               |                |                  |           |     |               6 - K_REG_SURG                                                                            |
+  |               |                |                  |           |     |               7 - K_REG_SESC                                                                            |
+  | rgalrest      | unsigned char  | SAR_ClasEstmon   |           |     | Regiao corrente para valor estimado                                                                     |
+  |               |                |                  |           |     |               0 - K_REG_NLRG                                                                            |
+  |               |                |                  |           |     |               1 - K_REG_IESC                                                                            |
+  |               |                |                  |           |     |               2 - K_REG_IURG                                                                            |
+  |               |                |                  |           |     |               3 - K_REG_IADV                                                                            |
+  |               |                |                  |           |     |               4 - K_REG_NORM                                                                            |
+  |               |                |                  |           |     |               5 - K_REG_SADV                                                                            |
+  |               |                |                  |           |     |               6 - K_REG_SURG                                                                            |
+  |               |                |                  |           |     |               7 - K_REG_SESC                                                                            |
+  | rgalrotm      | unsigned char  | SAR_ClasContem   |           |     | Regiao corrente de alarme para valor otimizado                                                          |
+  |               |                |                  |           |     |               0 - K_REG_NLRG                                                                            |
+  |               |                |                  |           |     |               1 - K_REG_IESC                                                                            |
+  |               |                |                  |           |     |               2 - K_REG_IURG                                                                            |
+  |               |                |                  |           |     |               3 - K_REG_IADV                                                                            |
+  |               |                |                  |           |     |               4 - K_REG_NORM                                                                            |
+  |               |                |                  |           |     |               5 - K_REG_SADV                                                                            |
+  |               |                |                  |           |     |               6 - K_REG_SURG                                                                            |
+  |               |                |                  |           |     |               7 - K_REG_SESC                                                                            |
+  | step          | char           | STI_ClasHist     | sim       |     | Indicador de modo de interpolacao do valores no banco PI                                                |
+  | subauto       | char           | SAR_ClasEstmon   |           |     | Indicador para substituicao automatica do ponto analogico                                               |
+  | subtipo1      | char           | STI_ClasCadastro | sim       |     | Subtipo nivel 1 de grandeza analogica                                                                   |
+  |               |                |                  |           |     |               1 - K_GRANDANA_CP                                                                         |
+  |               |                |                  |           |     |               2 - K_GRANDANA_II                                                                         |
+  |               |                |                  |           |     |               3 - K_GRANDANA_RGIR                                                                       |
+  |               |                |                  |           |     |               4 - K_GRANDANA_GD                                                                         |
+  |               |                |                  |           |     |               5 - K_GRANDANA_RREG                                                                       |
+  |               |                |                  |           |     |               6 - K_GRANDANA_GE                                                                         |
+  |               |                |                  |           |     |               8 - K_GRANDANA_GMA                                                                        |
+  |               |                |                  |           |     |               9 - K_GRANDANA_GMI                                                                        |
+  |               |                |                  |           |     |              10 - K_GRANDANA_ILP                                                                        |
+  |               |                |                  |           |     |              11 - K_GRANDANA_ILR                                                                        |
+  |               |                |                  |           |     |              12 - K_GRANDANA_GSCD                                                                       |
+  |               |                |                  |           |     |              13 - K_GRANDANA_DSCD                                                                       |
+  |               |                |                  |           |     |              14 - K_GRANDANA_CSCD                                                                       |
+  |               |                |                  |           |     |              15 - K_GRANDANA_NIJUZ                                                                      |
+  |               |                |                  |           |     |              16 - K_GRANDANA_NIMON                                                                      |
+  |               |                |                  |           |     |              17 - K_GRANDANA_LIMOFF                                                                     |
+  |               |                |                  |           |     |              18 - K_GRANDANA_GDS                                                                        |
+  | term          | char           | SAR_ClasCad      | sim       |     | Indicador do lado da medida associada ao circuito                                                       |
+  |               |                |                  |           |     |               0 - K_LADO_NLADO                                                                          |
+  |               |                |                  |           |     |               1 - K_LADO_DE                                                                             |
+  |               |                |                  |           |     |               2 - K_LADO_PARA                                                                           |
+  |               |                |                  |           |     |               3 - K_LADO_PRI                                                                            |
+  |               |                |                  |           |     |               4 - K_LADO_SEC                                                                            |
+  |               |                |                  |           |     |               5 - K_LADO_TER                                                                            |
+  | tipoe         | char           | SCD_ClasSac      | sim       |     | Tipo de grandeza                                                                                        |
+  |               |                |                  |           |     |               0 - K_GRANDANA_P                                                                          |
+  |               |                |                  |           |     |               1 - K_GRANDANA_Q                                                                          |
+  |               |                |                  |           |     |               2 - K_GRANDANA_QANT                                                                       |
+  |               |                |                  |           |     |               3 - K_GRANDANA_VOLT                                                                       |
+  |               |                |                  |           |     |               4 - K_GRANDANA_FREQ                                                                       |
+  |               |                |                  |           |     |               5 - K_GRANDANA_TAP                                                                        |
+  |               |                |                  |           |     |               6 - K_GRANDANA_CORRENT                                                                    |
+  |               |                |                  |           |     |               7 - K_GRANDANA_MVA                                                                        |
+  |               |                |                  |           |     |               8 - K_GRANDANA_TEMPO                                                                      |
+  |               |                |                  |           |     |              10 - K_GRANDANA_FASE                                                                       |
+  |               |                |                  |           |     |              11 - K_GRANDANA_FPOT                                                                       |
+  |               |                |                  |           |     |              12 - K_GRANDANA_TMP                                                                        |
+  |               |                |                  |           |     |              13 - K_GRANDANA_PRESSAO                                                                    |
+  |               |                |                  |           |     |              14 - K_GRANDANA_RPM                                                                        |
+  |               |                |                  |           |     |              15 - K_GRANDANA_VAZAO                                                                      |
+  |               |                |                  |           |     |              16 - K_GRANDANA_BIAS                                                                       |
+  |               |                |                  |           |     |              17 - K_GRANDANA_ECA                                                                        |
+  |               |                |                  |           |     |              18 - K_GRANDANA_VOLT_FN                                                                    |
+  |               |                |                  |           |     |              19 - K_GRANDANA_MWH                                                                        |
+  |               |                |                  |           |     |              20 - K_GRANDANA_NVL                                                                        |
+  |               |                |                  |           |     |              21 - K_GRANDANA_PLV                                                                        |
+  |               |                |                  |           |     |              22 - K_GRANDANA_DIST                                                                       |
+  |               |                |                  |           |     |              23 - K_GRANDANA_VOLT_AB                                                                    |
+  |               |                |                  |           |     |              24 - K_GRANDANA_VOLT_BC                                                                    |
+  |               |                |                  |           |     |              25 - K_GRANDANA_VOLT_CA                                                                    |
+  |               |                |                  |           |     |              26 - K_GRANDANA_VOLT_AN                                                                    |
+  |               |                |                  |           |     |              27 - K_GRANDANA_VOLT_BN                                                                    |
+  |               |                |                  |           |     |              28 - K_GRANDANA_VOLT_CN                                                                    |
+  |               |                |                  |           |     |              29 - K_GRANDANA_MWH_E                                                                      |
+  |               |                |                  |           |     |              30 - K_GRANDANA_MWH_S                                                                      |
+  |               |                |                  |           |     |              31 - K_GRANDANA_MWHH                                                                       |
+  |               |                |                  |           |     |              32 - K_GRANDANA_MVARH                                                                      |
+  |               |                |                  |           |     |              33 - K_GRANDANA_MVARH_E                                                                    |
+  |               |                |                  |           |     |              34 - K_GRANDANA_MVARH_S                                                                    |
+  |               |                |                  |           |     |              35 - K_GRANDANA_VCC                                                                        |
+  |               |                |                  |           |     |              36 - K_GRANDANA_PCARGA                                                                     |
+  |               |                |                  |           |     |              37 - K_GRANDANA_COR_A                                                                      |
+  |               |                |                  |           |     |              38 - K_GRANDANA_COR_B                                                                      |
+  |               |                |                  |           |     |              39 - K_GRANDANA_COR_C                                                                      |
+  |               |                |                  |           |     |              40 - K_GRANDANA_COR_N                                                                      |
+  |               |                |                  |           |     |              41 - K_GRANDANA_MDT                                                                        |
+  |               |                |                  |           |     |              42 - K_GRANDANA_PMT                                                                        |
+  |               |                |                  |           |     |              43 - K_GRANDANA_MDF                                                                        |
+  |               |                |                  |           |     |              44 - K_GRANDANA_HARMONICAS                                                                 |
+  |               |                |                  |           |     |              45 - K_GRANDANA_ALRP                                                                       |
+  |               |                |                  |           |     |              46 - K_GRANDANA_KVD                                                                        |
+  |               |                |                  |           |     |              47 - K_GRANDANA_ANG_DPEX                                                                   |
+  |               |                |                  |           |     |              48 - K_GRANDANA_ANG_COMU                                                                   |
+  |               |                |                  |           |     |              49 - K_GRANDANA_VOLT_N                                                                     |
+  |               |                |                  |           |     |              50 - K_GRANDANA_AMPL_OSC                                                                   |
+  |               |                |                  |           |     |              51 - K_GRANDANA_FREQ_OSC                                                                   |
+  |               |                |                  |           |     |              52 - K_GRANDANA_DAMP_OSC                                                                   |
+  |               |                |                  |           |     |              53 - K_GRANDANA_DFREQ                                                                      |
+  |               |                |                  |           |     |              54 - K_GRANDANA_PERCENT                                                                    |
+  |               |                |                  |           |     |              55 - K_GRANDANA_AAMP                                                                       |
+  |               |                |                  |           |     |              56 - K_GRANDANA_AAMP_A                                                                     |
+  |               |                |                  |           |     |              57 - K_GRANDANA_AAMP_B                                                                     |
+  |               |                |                  |           |     |              58 - K_GRANDANA_AAMP_C                                                                     |
+  |               |                |                  |           |     |              59 - K_GRANDANA_AAMP_N                                                                     |
+  |               |                |                  |           |     |              60 - K_GRANDANA_AKV                                                                        |
+  |               |                |                  |           |     |              61 - K_GRANDANA_AKV_AN                                                                     |
+  |               |                |                  |           |     |              62 - K_GRANDANA_AKV_BN                                                                     |
+  |               |                |                  |           |     |              63 - K_GRANDANA_AKV_CN                                                                     |
+  |               |                |                  |           |     |              64 - K_GRANDANA_AKV_N                                                                      |
+  |               |                |                  |           |     |              65 - K_GRANDANA_DEFA                                                                       |
+  |               |                |                  |           |     |              99 - K_GRANDANA_OUTROS                                                                     |
+  | tmp_curta     | int            | SCD_ClasSac      | sim       |     | Maximo de segundos para permanencia extrapolando LxE                                                    |
+  | tmp_longa     | int            | SCD_ClasSac      | sim       |     | Maximo de segundos para permanencia extrapolando LxU                                                    |
+  | tmp_perm      | int            | SCD_ClasSac      | sim       |     | Maximo de segundos para permanencia extrapolando LxA                                                    |
+  | tpcal         | unsigned char  | SCD_ClasSac      | sim       |     | Tipo de calculo                                                                                         |
+  | tpeqp         | char           | SAR_ClasConfig   |           |     | Tipo do equipamento                                                                                     |
+  |               |                |                  |           |     |               3 - K_INDEQP_SBA                                                                          |
+  |               |                |                  |           |     |               4 - K_INDEQP_UGE                                                                          |
+  |               |                |                  |           |     |               5 - K_INDEQP_CSI                                                                          |
+  |               |                |                  |           |     |               6 - K_INDEQP_CRE                                                                          |
+  |               |                |                  |           |     |               7 - K_INDEQP_CAR                                                                          |
+  |               |                |                  |           |     |               8 - K_INDEQP_BCP                                                                          |
+  |               |                |                  |           |     |               9 - K_INDEQP_REA                                                                          |
+  |               |                |                  |           |     |              10 - K_INDEQP_CNC                                                                          |
+  |               |                |                  |           |     |              11 - K_INDEQP_LTR                                                                          |
+  |               |                |                  |           |     |              12 - K_INDEQP_TRF                                                                          |
+  |               |                |                  |           |     |              13 - K_INDEQP_RAM                                                                          |
+  |               |                |                  |           |     |              14 - K_INDEQP_CSE                                                                          |
+  |               |                |                  |           |     |              15 - K_INDEQP_CNV                                                                          |
+  |               |                |                  |           |     |              16 - K_INDEQP_LDC                                                                          |
+  |               |                |                  |           |     |              17 - K_INDEQP_USI                                                                          |
+  |               |                |                  |           |     |              18 - K_INDEQP_CIA                                                                          |
+  |               |                |                  |           |     |              19 - K_INDEQP_UDE                                                                          |
+  |               |                |                  |           |     |              20 - K_INDEQP_ELE                                                                          |
+  |               |                |                  |           |     |              22 - K_INDEQP_TAC                                                                          |
+  |               |                |                  |           |     |              25 - K_INDEQP_ACO                                                                          |
+  |               |                |                  |           |     |              26 - K_INDEQP_CAG                                                                          |
+  |               |                |                  |           |     |              27 - K_INDEQP_ARE                                                                          |
+  |               |                |                  |           |     |              28 - K_INDEQP_BAH                                                                          |
+  |               |                |                  |           |     |              29 - K_INDEQP_CLI                                                                          |
+  |               |                |                  |           |     |              30 - K_INDEQP_COS                                                                          |
+  |               |                |                  |           |     |              31 - K_INDEQP_ESTM                                                                         |
+  |               |                |                  |           |     |              32 - K_INDEQP_GUSI                                                                         |
+  |               |                |                  |           |     |              33 - K_INDEQP_INS                                                                          |
+  |               |                |                  |           |     |              34 - K_INDEQP_REG                                                                          |
+  |               |                |                  |           |     |              35 - K_INDEQP_REGH                                                                         |
+  |               |                |                  |           |     |              36 - K_INDEQP_RES                                                                          |
+  |               |                |                  |           |     |              37 - K_INDEQP_RIO                                                                          |
+  |               |                |                  |           |     |              38 - K_INDEQP_SIS                                                                          |
+  |               |                |                  |           |     |              39 - K_INDEQP_SME                                                                          |
+  |               |                |                  |           |     |              40 - K_INDEQP_UFE                                                                          |
+  |               |                |                  |           |     |              41 - K_INDEQP_OUTROS                                                                       |
+  |               |                |                  |           |     |              43 - K_INDEQP_RESV                                                                         |
+  |               |                |                  |           |     |              44 - K_INDEQP_EST                                                                          |
+  | tpeqp_cad     | char           | STI_ClasCadastro | sim       |     | Tipo do equipamento                                                                                     |
+  |               |                |                  |           |     |               3 - K_INDEQP_SBA                                                                          |
+  |               |                |                  |           |     |               4 - K_INDEQP_UGE                                                                          |
+  |               |                |                  |           |     |               5 - K_INDEQP_CSI                                                                          |
+  |               |                |                  |           |     |               6 - K_INDEQP_CRE                                                                          |
+  |               |                |                  |           |     |               7 - K_INDEQP_CAR                                                                          |
+  |               |                |                  |           |     |               8 - K_INDEQP_BCP                                                                          |
+  |               |                |                  |           |     |               9 - K_INDEQP_REA                                                                          |
+  |               |                |                  |           |     |              10 - K_INDEQP_CNC                                                                          |
+  |               |                |                  |           |     |              11 - K_INDEQP_LTR                                                                          |
+  |               |                |                  |           |     |              12 - K_INDEQP_TRF                                                                          |
+  |               |                |                  |           |     |              13 - K_INDEQP_RAM                                                                          |
+  |               |                |                  |           |     |              14 - K_INDEQP_CSE                                                                          |
+  |               |                |                  |           |     |              15 - K_INDEQP_CNV                                                                          |
+  |               |                |                  |           |     |              16 - K_INDEQP_LDC                                                                          |
+  |               |                |                  |           |     |              17 - K_INDEQP_USI                                                                          |
+  |               |                |                  |           |     |              18 - K_INDEQP_CIA                                                                          |
+  |               |                |                  |           |     |              19 - K_INDEQP_UDE                                                                          |
+  |               |                |                  |           |     |              20 - K_INDEQP_ELE                                                                          |
+  |               |                |                  |           |     |              22 - K_INDEQP_TAC                                                                          |
+  |               |                |                  |           |     |              25 - K_INDEQP_ACO                                                                          |
+  |               |                |                  |           |     |              26 - K_INDEQP_CAG                                                                          |
+  |               |                |                  |           |     |              27 - K_INDEQP_ARE                                                                          |
+  |               |                |                  |           |     |              28 - K_INDEQP_BAH                                                                          |
+  |               |                |                  |           |     |              29 - K_INDEQP_CLI                                                                          |
+  |               |                |                  |           |     |              30 - K_INDEQP_COS                                                                          |
+  |               |                |                  |           |     |              31 - K_INDEQP_ESTM                                                                         |
+  |               |                |                  |           |     |              32 - K_INDEQP_GUSI                                                                         |
+  |               |                |                  |           |     |              33 - K_INDEQP_INS                                                                          |
+  |               |                |                  |           |     |              34 - K_INDEQP_REG                                                                          |
+  |               |                |                  |           |     |              35 - K_INDEQP_REGH                                                                         |
+  |               |                |                  |           |     |              36 - K_INDEQP_RES                                                                          |
+  |               |                |                  |           |     |              37 - K_INDEQP_RIO                                                                          |
+  |               |                |                  |           |     |              38 - K_INDEQP_SIS                                                                          |
+  |               |                |                  |           |     |              39 - K_INDEQP_SME                                                                          |
+  |               |                |                  |           |     |              40 - K_INDEQP_UFE                                                                          |
+  |               |                |                  |           |     |              41 - K_INDEQP_OUTROS                                                                       |
+  |               |                |                  |           |     |              43 - K_INDEQP_RESV                                                                         |
+  |               |                |                  |           |     |              44 - K_INDEQP_EST                                                                          |
+  | tpfil         | unsigned char  | SCD_ClasSac      | sim       |     | Tipo de filtro                                                                                          |
+  |               |                |                  |           |     |               0 - K_TIP_NLFL                                                                            |
+  |               |                |                  |           |     |               1 - K_TIP_FIL1                                                                            |
+  |               |                |                  |           |     |               2 - K_TIP_FIL2                                                                            |
+  |               |                |                  |           |     |               3 - K_TIP_FIL3                                                                            |
+  |               |                |                  |           |     |               4 - K_TIP_FIL4                                                                            |
+  |               |                |                  |           |     |               5 - K_TIP_FIL5                                                                            |
+  |               |                |                  |           |     |               6 - K_TIP_FIL6                                                                            |
+  |               |                |                  |           |     |               7 - K_TIP_FIL7                                                                            |
+  |               |                |                  |           |     |               8 - K_TIP_FIL8                                                                            |
+  |               |                |                  |           |     |               9 - K_TIP_FIL9                                                                            |
+  | txvar         | unsigned char  | SCD_ClasSac      |           |     | Percentual para alarme de taxa de variacao                                                              |
+  | unidade       | string[10]     | STI_ClasHist     | sim       |     | Tipo de grandeza no formato string                                                                      |
+  | valaq         | float          | SCD_ClasSac      |           |     | Valor aquisitado                                                                                        |
+  | valctg        | float          | SAR_ClasAnacon   |           | sim | Valor calculado pelo SAR_anacon para a medida                                                           |
+  | valest        | float          | SAR_ClasEstado   |           |     | Valor calculado pelo SAR_estmon para a medida                                                           |
+  | valor         | float          | SCD_ClasSac      |           |     | Valor considerado                                                                                       |
+  | valor_fp      | float          | SAR_ClasFluxop   |           |     | Valor calculador pelo SAR_fluxop para a medida                                                          |
+  | valorg        | float          | SAR_ClasOrganon  |           |     | Valor calculado pelo Organon para a medida                                                              |
+  | valotm        | float          | SAR_ClasContem   |           |     | Valor otimizado para a medida                                                                           |
+  | vlant         | float          | SCD_ClasSac      |           |     | Valor anterior                                                                                          |
+  `-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
